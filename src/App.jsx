@@ -8,7 +8,11 @@ const App = () => {
 
 	const handleFullName = (e) => {
 		e.preventDefault();
-		setFullname(`${firstname} ${lastName}`);
+		if (firstname.trim() !== '' && lastName.trim() !== '') {
+			setFullname(`${firstname.trim()} ${lastName.trim()}`);
+		} else {
+			setFullname('');
+		}
 	};
 
 	return (
