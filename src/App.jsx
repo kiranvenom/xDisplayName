@@ -1,55 +1,54 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const App = () => {
-	const [firstname, setFirstname] = useState('');
-	const [lastName, setLastName] = useState('');
+function App() {
+	const [first, setFirst] = useState('');
+	const [last, setLast] = useState('');
+	const [fullName, setFullName] = useState('');
 
-	const [fullName, setFullname] = useState('');
-
-	const handleFullName = (e) => {
-		e.preventDefault();
-		if (firstname.trim() !== '' && lastName.trim() !== '') {
-			setFullname(`${firstname.trim()} ${lastName.trim()}`);
-		} else {
-			setFullname('');
-		}
+	const handleFirst = (e) => {
+		setFirst(e.target.value);
 	};
 
+	const handleLast = (e) => {
+		setLast(e.target.value);
+	};
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		if (!first || !last) {
+			setFullName('');
+			return;
+		}
+		let res = first + ' ' + last;
+		setFullName(res);
+	};
 	return (
 		<>
-			<div>
+			<div className='App'>
 				<h1>Full Name Display</h1>
-				<form onSubmit={handleFullName}>
+				<form onSubmit={handleSubmit}>
 					<div>
-						<label htmlFor='firstname'>First Name:</label>
+						<p>First Name:</p>
 						<input
 							type='text'
-							name='firstname'
-							id='firstname'
-							value={firstname}
-							onChange={(e) => setFirstname(e.target.value)}
-							required
+							value={first}
+							onChange={(e) => handleFirst(e)}
 						/>
 					</div>
 					<div>
-						<label htmlFor='lastname'>Last Name:</label>
+						<p>Last Name:</p>
 						<input
 							type='text'
-							name='lastname'
-							id='lastname'
-							value={lastName}
-							onChange={(e) => setLastName(e.target.value)}
-							required
+							value={last}
+							onChange={(e) => handleLast(e)}
 						/>
 					</div>
 					<button type='submit'>Submit</button>
 				</form>
-				<div className='fullName'>
-					{fullName !== '' && <h2>Full Name: {fullName}</h2>}
-				</div>
+				{fullName && <div>Full Name: {fullName}</div>}
 			</div>
 		</>
 	);
-};
+}
 
 export default App;
