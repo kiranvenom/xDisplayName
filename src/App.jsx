@@ -3,13 +3,14 @@ import React, { useState } from 'react';
 const App = () => {
 	const [firstname, setFirstname] = useState('');
 	const [lastName, setLastName] = useState('');
-
 	const [fullName, setFullname] = useState('');
 
 	const handleFullName = (e) => {
 		e.preventDefault();
-		if (firstname.trim() !== '' && lastName.trim() !== '') {
-			setFullname(`${firstname.trim()} ${lastName.trim()}`);
+		const trimmedFirstName = firstname.trim();
+		const trimmedLastName = lastName.trim();
+		if (trimmedFirstName !== '' && trimmedLastName !== '') {
+			setFullname(`${trimmedFirstName} ${trimmedLastName}`);
 		} else {
 			setFullname('');
 		}
@@ -45,7 +46,7 @@ const App = () => {
 					<button type='submit'>Submit</button>
 				</form>
 				<div className='fullName'>
-					{fullName !== '' && `Full Name: ${fullName}`}
+					{fullName && `Full Name: ${fullName}`}
 				</div>
 			</div>
 		</>
