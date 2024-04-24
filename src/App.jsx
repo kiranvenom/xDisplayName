@@ -45,7 +45,7 @@ const App = () => {
 					<button type='submit'>Submit</button>
 				</form>
 				<div className='fullName'>
-					{fullName !== '' && <h1>Full Name: {fullName}</h1>}
+					{fullName !== '' && <h2>Full Name: {fullName}</h2>}
 				</div>
 			</div>
 		</>
